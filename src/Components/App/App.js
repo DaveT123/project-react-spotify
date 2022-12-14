@@ -55,7 +55,7 @@ export default function App() {
     return (
         <div>
             <h1>
-                Ja<span className="highlight">mmm</span>ing
+                Spotify<span className="highlight"> Playlist </span>App
             </h1>
             <div className="App">
                 <SearchBar onSearch={search} />
