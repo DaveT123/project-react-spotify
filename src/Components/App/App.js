@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SearchResults } from "../SearchResults/SearchResults";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { Playlist } from "../Playlist/Playlist";
@@ -51,6 +51,10 @@ export default function App() {
             setSearchResults(results);
         });
     };
+
+    useEffect(() => {
+        Spotify.getAccessToken();
+    }, []);
 
     return (
         <div>
