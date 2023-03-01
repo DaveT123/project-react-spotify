@@ -1,5 +1,8 @@
 const clientId = "57714d0dd7224f2eae8d68992a4d9b74";
+// when deploying to github pages
 const redirectUri = "https://davet123.github.io/project-react-spotify/";
+// when working on localhost
+// const redirectUri = "http://localhost:3000/";
 let accessToken;
 
 const Spotify = {
@@ -70,7 +73,7 @@ const Spotify = {
         const response = await fetch("https://api.spotify.com/v1/me", {
             headers: headers,
         });
-        const data = response.json();
+        const data = await response.json();
         userId = data.id;
 
         const responsePlaylists = await fetch(
@@ -81,7 +84,7 @@ const Spotify = {
                 body: JSON.stringify({ name: name }),
             }
         );
-        const dataPlaylists = responsePlaylists.json();
+        const dataPlaylists = await responsePlaylists.json();
         const playlistId = dataPlaylists.id;
 
         const responseTracks = await fetch(

@@ -9,7 +9,7 @@ import Spotify from "../../util/Spotify";
 export default function App() {
     const [searchResults, setSearchResults] = useState([]);
 
-    const [playlistName, setPlaylistName] = useState("My PLayList");
+    const [playlistName, setPlaylistName] = useState("New PLayList");
     const [playlistTracks, setPlaylistTracks] = useState([]);
 
     const addTrack = (track) => {
@@ -34,8 +34,7 @@ export default function App() {
     const savePlaylist = async () => {
         const trackUris = playlistTracks.map((track) => track.uri);
         const result = await Spotify.savePlaylist(playlistName, trackUris);
-        setPlaylistName("New PLaylist");
-        setPlaylistTracks([]);
+
         if (result.ok) {
             alert(
                 `${playlistName} successfuly added. Launch Spotify to listen to it!`
@@ -43,6 +42,9 @@ export default function App() {
         } else {
             alert("Something went wrong. Playlist not added.");
         }
+
+        setPlaylistName("New PLaylist");
+        setPlaylistTracks([]);
     };
 
     const search = async (searchTerm) => {

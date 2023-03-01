@@ -12,11 +12,20 @@ export function SearchBar(props) {
         setTerm(e.target.value);
     };
 
+    const handleEnter = (e) => {
+        if (e.key !== "Enter") {
+            return;
+        }
+
+        props.onSearch(term);
+    };
+
     return (
         <div className="SearchBar">
             <input
                 placeholder="Enter A Song, Album, or Artist"
                 onChange={handleTermChange}
+                onKeyDown={handleEnter}
             />
             <button className="SearchButton" onClick={search}>
                 SEARCH
