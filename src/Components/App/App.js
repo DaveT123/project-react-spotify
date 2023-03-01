@@ -31,25 +31,23 @@ export default function App() {
         setPlaylistName(name);
     };
 
-    const savePlaylist = () => {
+    const savePlaylist = async () => {
         const trackUris = playlistTracks.map((track) => track.uri);
-        Spotify.savePlaylist(playlistName, trackUris).then((res) => {
-            setPlaylistName("New PLaylist");
-            setPlaylistTracks([]);
-            if (res.ok) {
-                alert(
-                    `${playlistName} successfuly added. Launch Spotify to listen to it!`
-                );
-            } else {
-                alert("Something went wrong. Playlist not added.");
-            }
-        });
+        const result = await Spotify.savePlaylist(playlistName, trackUris);
+        setPlaylistName("New PLaylist");
+        setPlaylistTracks([]);
+        if (result.ok) {
+            alert(
+                `${playlistName} successfuly added. Launch Spotify to listen to it!`
+            );
+        } else {
+            alert("Something went wrong. Playlist not added.");
+        }
     };
 
-    const search = (searchTerm) => {
-        Spotify.search(searchTerm).then((results) => {
-            setSearchResults(results);
-        });
+    const search = async (searchTerm) => {
+        const result = await Spotify.search(searchTerm);
+        setSearchResults(result);
     };
 
     useEffect(() => {
